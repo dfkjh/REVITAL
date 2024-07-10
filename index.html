@@ -12,6 +12,7 @@
             text-align: center;
             background-color: #ffffff;
             color: #000000;
+            overflow-x: hidden;
         }
 
         header {
@@ -112,26 +113,41 @@
             cursor: pointer;
         }
 
-        .products {
+        main {
+            padding-top: 100px; /* 페이지 상단 여백 */
+            min-height: calc(100vh - 160px); /* 전체 높이에서 헤더와 푸터 높이 제외 */
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2열 그리드 */
+            gap: 40px; /* 상품과 상품 사이의 간격 */
             padding: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+            justify-items: center; /* 가운데 정렬 */
+            width: 80%; /* 그리드 전체 너비 조정 */
+            max-width: 1200px; /* 최대 너비 제한 */
+            margin: 0 auto; /* 가운데 정렬을 위한 자동 마진 */
         }
 
         .product {
             background-color: #ffffff;
             border: 1px solid #ddd;
-            margin: 10px;
-            padding: 10px;
-            width: 300px; /* 크기 조정 */
-            height: 400px; /* 정사각형 */
+            padding: 20px;
+            width: 100%; /* 그리드 아이템 가로 길이 */
+            height: 350px; /* 그리드 아이템 높이 */
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: transform 0.2s;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            text-align: center;
         }
 
         .product img {
@@ -167,20 +183,24 @@
             background-color: #000000;
             color: #ffffff;
             padding: 10px;
-            position: fixed;
             width: 100%;
+            position: fixed; /* 고정된 위치에서 자유롭게 변경 */
             bottom: 0;
         }
 
         .small-text {
             font-size: 0.75em;
         }
+
+        .fade-in {
+            opacity: 1 !important;
+        }
     </style>
 </head>
 <body>
     <header>
         <a href="index.html">
-            <img src="logo.png" alt="Revital 로고" class="logo">
+            <img src="로고.png" alt="Revital 로고" class="logo">
         </a>
         <h1>Revital</h1>
         <p>폐마스크를 재활용하여 만든 친환경 의류</p>
@@ -206,33 +226,41 @@
     </div>
 
     <main>
-        <section class="products">
+        <section class="products" id="product-section">
             <div class="product">
-                <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/449879963_500754419073741_3627847422516915973_n.jpg?stp=dst-jpg_s403x403&_nc_cat=111&ccb=1-7&_nc_sid=0024fc&_nc_ohc=eS0qfDPUzSEQ7kNvgE1jMUH&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QE0hzKZ2GyYoK_ESNje8-JoeAQLsePEZO4NQIZvlmSVfA&oe=66B497F5" alt="티셔츠" class="product-image">
+                <img src="하얀티.jpg" alt="티셔츠" class="product-image">
                 <p class="product-name">티셔츠</p>
                 <p class="product-description">친환경 소재로 만든 티셔츠</p>
-                <p class="price">₩30,000</p>
+                <p class="price">₩23,000</p>
             </div>
             <div class="product">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20231115_187%2F1700024120573VLdDY_JPEG%2F46397563754890947_1430762834.jpg&type=sc960_832" alt="맨투맨" class="product-image">
-                <p class="product-name">맨투맨</p>
+                <img src="검정티.jpg" alt="티셔츠" class="product-image">
+                <p class="product-name">티셔츠</p>
+                <p class="product-description">친환경 소재로 만든 티셔츠</p>
+                <p class="price">₩23,000</p>
+            </div>
+            <div class="product">
+                <img src="회색후드티.jpg" alt="맨투맨" class="product-image">
+                <p class="product-name">후드티</p>
                 <p class="product-description">편안한 착용감의 맨투맨</p>
-                <p class="price">₩35,000</p>
+                <p class="price">₩28,000</p>
             </div>
             <div class="product">
-                <img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fimage.msscdn.net%2Fimages%2Fgoods_img%2F20210818%2F2069532%2F2069532_2_500.jpg%3Ft%3D20220701161251&type=sc960_832" alt="바지" class="product-image">
+                <img src="검정바지.jpg" alt="바지" class="product-image">
                 <p class="product-name">바지</p>
                 <p class="product-description">스타일리쉬한 친환경 바지</p>
-                <p class="price">₩40,000</p>
+                <p class="price">₩26,000</p>
             </div>
             <div class="product">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20240512_205%2F1715444994512O5pcw_JPEG%2Fb00fa1c2dbaf62b26351923f0be97092.jpg&type=sc960_832" alt="가방" class="product-image">
-                <p class="product-name">가방</p>
-                <p class="product-description">실용적인 친환경 가방</p>
-                <p class="price">₩25,000</p>
+                <img src="회색바지.jpg" alt="바지" class="product-image">
+                <p class="product-name">바지</p>
+                <p class="product-description">스타일리쉬한 친환경 바지</p>
+                <p class="price">₩26,000</p>
             </div>
+            
         </section>
     </main>
+
     <footer>
         <p class="small-text">폐마스크 제공 병원: OO 병원, XX 병원, YY 병원</p>
     </footer>
@@ -245,6 +273,16 @@
         function closeMenu() {
             document.getElementById("sideMenu").style.width = "0";
         }
+
+        window.addEventListener('scroll', function() {
+            const products = document.getElementById('product-section');
+            const productsPosition = products.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.2;
+
+            if (productsPosition < screenPosition) {
+                products.classList.add('fade-in');
+            }
+        });
     </script>
 </body>
 </html>
