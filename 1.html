@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,7 @@
         header {
             width: 100%;
             background-color: #000000;
-            padding: 70px 0; /* 상단과 하단의 패딩을 늘려 더 길게 만듭니다 */
+            padding: 70px 0;
             text-align: center;
         }
 
@@ -32,14 +33,14 @@
 
         header p {
             color: #ffffff;
-            margin: 10px 0 0; /* 회사 소개 문구의 위쪽 마진을 추가합니다 */
-            font-size: 1rem; /* 회사 소개 문구의 폰트 사이즈를 조정합니다 */
+            margin: 10px 0 0;
+            font-size: 1rem;
         }
 
         .container {
             width: 80%;
             margin-top: 20px;
-            position: relative; /* 추가된 위치 지정 */
+            position: relative;
         }
 
         .step {
@@ -47,8 +48,8 @@
             padding: 40px 20px;
             text-align: center;
             transition: opacity 1s ease-in-out;
-            position: relative; /* 추가된 위치 지정 */
-            margin-bottom: 20vh; /* 각 과정 사이의 간격을 viewport height 단위로 조정 */
+            position: relative;
+            margin-bottom: 20vh;
         }
 
         .step.visible {
@@ -82,23 +83,72 @@
         }
 
         .page-title {
-            font-size: 2rem; /* 제목의 폰트 크기를 줄입니다 */
-            font-weight: bold; /* 제목의 글씨 굵기를 강조합니다 */
-            text-align: center; /* 제목을 중앙으로 정렬합니다 */
-            margin-bottom: 20px; /* 아래 여백을 추가합니다 */
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .intro-title {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        .intro-image {
+            max-width: 60%;
+            height: auto;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .intro-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .intro-image {
+                max-width: 40%;
+            }
+        }
+
+        .spacer {
+            height: 10cm; /* 10cm 간격을 추가 */
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1 onclick="window.location.href='https://dfkjh.github.io/REVITAL/';">RETIAL</h1>
         <p>회사 소개</p>
     </header>
     <div class="container">
-        <div class="page-title">폐마스크를 의류로 제작하는 과정</div>
+        <div class="intro-title">1. 회사 소개</div>
+        <div class="intro-container">
+            <img src="https://ouch-cdn2.icons8.com/BsXgis_s2z1S35BWhiurYkvO_b4R4ltqht2OemJ5NyA/rs:fit:368:278/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNjIz/LzI1ZjgzYmY1LTgw/YzAtNGEwZi05ZmU3/LTNhNTJlNDQ3MDJi/Zi5wbmc.png"
+                alt="Intro Image" class="intro-image">
+            <div class="intro-text">
+                <p>REVITAL은 자원의 순환을 돕습니다. 매년 엄청난 양의 버려지는 일회용 마스크를 이용해 옷을 생산함으로써 마스크가 그냥 버려질 때의 생기는 환경 오염을 줄입니다. 저희의 목표는 자원 순환을 이뤄내는 것입니다. 수거된 자원이 가공을 거쳐 옷으로 탈바꿈되고, 다시 우리 생활에 되돌아오는 순환고리를 완성합니다.</p>
+            </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="page-title">2. 폐마스크를 의류로 제작하는 과정</div>
         <div class="step" id="step1">
             <div class="content left">
-                <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/449886090_1026819178832035_8654167234444296383_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=0024fc&_nc_ohc=-_IG-IDHKS4Q7kNvgFg3Q-I&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QEcZlwko6QW3APcOYV7vQ5Pbr1BNOAu_3BsOcjBjHLBTA&oe=66B6D342" alt="Step 1 Image">
+                <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/449886090_1026819178832035_8654167234444296383_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=0024fc&_nc_ohc=-_IG-IDHKS4Q7kNvgFg3Q-I&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QEcZlwko6QW3APcOYV7vQ5Pbr1BNOAu_3BsOcjBjHLBTA&oe=66B6D342"
+                    alt="Step 1 Image">
                 <div class="text">
                     <h2>Step 1: 수거 및 먼지 제거</h2>
                     <p>병원에 폐마스크 수거함을 설치하여 너무 오염되지 않은 마스크만 수거한 뒤 먼지를 제거합니다.</p>
@@ -111,7 +161,7 @@
                     <h2>Step 2: 자외선 소독</h2>
                     <p>자외선으로 소독하여 화학물질을 사용하지 않음으로써 부산물이나 잔류물질이 남지 않아 친환경적입니다.</p>
                 </div>
-                <img src="살균.png" alt="Step 2 Image">
+                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDEyMTdfMjM0%2FMDAxNjA4MTk2MTE3NDcy.13dHuUilWZTTKevPMxR7IhPmRMxeCvHi-KuTFfRzGGQg.zt8VG1QKZg7YKMuwE8zFq1W20Mi5NZXROzPYPI9msp4g.PNG.jeonseungkoo%2F53e2d0404955a814f6da8c7dda79337c143adbe1534c704f75277add924dc35a_1280.png&type=sc960_832" alt="Step 2 Image">
             </div>
         </div>
         <div class="step" id="step3">
@@ -129,7 +179,7 @@
                     <h2>Step 4: 세척 및 분리</h2>
                     <p>물과 친환경 세제로 세척하여 깨끗하게 한 후, 밀도 차이를 이용해 폴리프로필렌과 폴리에스터를 분리합니다.</p>
                 </div>
-                <img src="step4.jpg" alt="Step 4 Image">
+                <img src="https://search.pstatic.net/sunny/?src=https%3A%2F%2Fpng.pngtree.com%2Fpng-vector%2F20190804%2Fourmid%2Fpngtree-bowl-cleaning-washing-solid-glyph-icon-vector-png-image_1649757.jpg&type=sc960_832" alt="Step 4 Image">
             </div>
         </div>
         <div class="step" id="step5">
@@ -146,10 +196,10 @@
         document.addEventListener('scroll', function() {
             const steps = document.querySelectorAll('.step');
             const windowHeight = window.innerHeight;
-            
+
             steps.forEach(step => {
                 const stepTop = step.getBoundingClientRect().top;
-                
+
                 if (stepTop < windowHeight - 100) {
                     step.classList.add('visible');
                 }
@@ -157,4 +207,5 @@
         });
     </script>
 </body>
+
 </html>
