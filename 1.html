@@ -1,287 +1,159 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revital</title>
+    <title>RETIAL</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            text-align: center;
             background-color: #ffffff;
             color: #000000;
-            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         header {
+            width: 100%;
             background-color: #000000;
+            padding: 70px 0; /* 상단과 하단의 패딩을 늘려 더 길게 만듭니다 */
+            text-align: center;
+        }
+
+        header h1 {
             color: #ffffff;
-            padding: 20px;
-            position: relative;
-        }
-
-        .logo {
-            max-width: 100px;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-
-        h1 {
             margin: 0;
-            font-size: 2.5em;
-        }
-
-        .menu-icon {
-            position: absolute;
-            top: 20px;
-            right: 20px;
             cursor: pointer;
-            font-size: 1.5em;
+            font-size: 3rem;
         }
 
-        .side-menu {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            top: 0;
-            right: 0;
-            background-color: rgba(0, 0, 0, 0.8);
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
+        header p {
             color: #ffffff;
+            margin: 10px 0 0; /* 회사 소개 문구의 위쪽 마진을 추가합니다 */
+            font-size: 1rem; /* 회사 소개 문구의 폰트 사이즈를 조정합니다 */
         }
 
-        .side-menu-content {
-            padding: 20px;
+        .container {
+            width: 80%;
+            margin-top: 20px;
+            position: relative; /* 추가된 위치 지정 */
+        }
+
+        .step {
+            opacity: 0;
+            padding: 40px 20px;
+            text-align: center;
+            transition: opacity 1s ease-in-out;
+            position: relative; /* 추가된 위치 지정 */
+            margin-bottom: 20vh; /* 각 과정 사이의 간격을 viewport height 단위로 조정 */
+        }
+
+        .step.visible {
+            opacity: 1;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content.left img {
+            margin-right: 20px;
+        }
+
+        .content.right img {
+            order: 2;
+            margin-left: 20px;
+        }
+
+        .text {
+            max-width: 500px;
             text-align: left;
         }
 
-        .side-menu table {
-            width: 100%;
-            border-collapse: collapse;
+        img {
+            max-width: 300px;
+            height: auto;
+            border: 1px solid #000000;
         }
 
-        .side-menu table td {
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 10px;
-            text-align: center;
-        }
-
-        .side-menu table td a {
-            color: #ffffff;
-            text-decoration: none;
-            display: block;
-        }
-
-        .side-menu button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            border: none;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .side-menu button:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-        }
-
-        .side-menu button:active {
-            background-color: rgba(255, 255, 255, 0.5);
-            color: #000000;
-        }
-
-        .login-btn {
-            background-color: #000000;
-            color: #ffffff;
-        }
-
-        .signup-btn {
-            background-color: #ffffff;
-            color: #000000;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 2em;
-            cursor: pointer;
-        }
-
-        main {
-            padding-top: 100px; /* 페이지 상단 여백 */
-            min-height: calc(100vh - 160px); /* 전체 높이에서 헤더와 푸터 높이 제외 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .products {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2열 그리드 */
-            gap: 40px; /* 상품과 상품 사이의 간격 */
-            padding: 20px;
-            opacity: 0;
-            transition: opacity 1s ease-in;
-            justify-items: center; /* 가운데 정렬 */
-            width: 80%; /* 그리드 전체 너비 조정 */
-            max-width: 1200px; /* 최대 너비 제한 */
-            margin: 0 auto; /* 가운데 정렬을 위한 자동 마진 */
-        }
-
-        .product {
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            padding: 20px;
-            width: 100%; /* 그리드 아이템 가로 길이 */
-            height: 350px; /* 그리드 아이템 높이 */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .product img {
-            max-width: 100%;
-            max-height: 70%; /* 이미지 크기 조정 */
-            object-fit: contain;
-            transition: transform 0.2s;
-        }
-
-        .product:hover {
-            transform: scale(1.05);
-        }
-
-        .product-name {
-            color: #000000;
-            font-size: 18px;
-            margin-top: 10px;
-        }
-
-        .product-description {
-            color: #000000;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .price {
-            color: #000000;
-            font-size: 18px;
-            margin-top: 10px;
-        }
-
-        footer {
-            background-color: #000000;
-            color: #ffffff;
-            padding: 10px;
-            width: 100%;
-            position: fixed; /* 고정된 위치에서 자유롭게 변경 */
-            bottom: 0;
-        }
-
-        .small-text {
-            font-size: 0.75em;
-        }
-
-        .fade-in {
-            opacity: 1 !important;
+        .page-title {
+            font-size: 2rem; /* 제목의 폰트 크기를 줄입니다 */
+            font-weight: bold; /* 제목의 글씨 굵기를 강조합니다 */
+            text-align: center; /* 제목을 중앙으로 정렬합니다 */
+            margin-bottom: 20px; /* 아래 여백을 추가합니다 */
         }
     </style>
 </head>
 <body>
     <header>
-        <a href="index.html">
-            <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/449840107_1012635176936105_5788104580543067663_n.jpg?stp=dst-jpg_s403x403&_nc_cat=111&ccb=1-7&_nc_sid=0024fc&_nc_ohc=-UQP3KgRAVsQ7kNvgEEJPNM&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QEuBaFLYsF5zNyRS9wpXwb_2hEAY0VbAaCpP0qNKfomlw&oe=66B6B9BC" alt="Revital 로고" class="logo">
-        </a>
-        <h1>Revital</h1>
-        <p>폐마스크를 재활용하여 만든 친환경 의류</p>
-        <div class="menu-icon" onclick="openMenu()">&#9776;</div>
+        <h1 onclick="window.location.href='https://dfkjh.github.io/REVITAL/';">RETIAL</h1>
+        <p>회사 소개</p>
     </header>
-
-    <div id="sideMenu" class="side-menu">
-        <span class="close-btn" onclick="closeMenu()">&times;</span>
-        <div class="side-menu-content">
-            <table>
-                <tr>
-                    <td><a href="1.html">회사소개</a></td>
-                    <td>장바구니</td>
-                </tr>
-                <tr>
-                    <td>구매후기</td>
-                    <td>관심 상품</td>
-                </tr>
-            </table>
-            <button class="login-btn">로그인</button>
-            <button class="signup-btn">회원가입</button>
+    <div class="container">
+        <div class="page-title">폐마스크를 의류로 제작하는 과정</div>
+        <div class="step" id="step1">
+            <div class="content left">
+                <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/449886090_1026819178832035_8654167234444296383_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=0024fc&_nc_ohc=-_IG-IDHKS4Q7kNvgFg3Q-I&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QEcZlwko6QW3APcOYV7vQ5Pbr1BNOAu_3BsOcjBjHLBTA&oe=66B6D342" alt="Step 1 Image">
+                <div class="text">
+                    <h2>Step 1: 수거 및 먼지 제거</h2>
+                    <p>병원에 폐마스크 수거함을 설치하여 너무 오염되지 않은 마스크만 수거한 뒤 먼지를 제거합니다.</p>
+                </div>
+            </div>
+        </div>
+        <div class="step" id="step2">
+            <div class="content right">
+                <div class="text">
+                    <h2>Step 2: 자외선 소독</h2>
+                    <p>자외선으로 소독하여 화학물질을 사용하지 않음으로써 부산물이나 잔류물질이 남지 않아 친환경적입니다.</p>
+                </div>
+                <img src="살균.png" alt="Step 2 Image">
+            </div>
+        </div>
+        <div class="step" id="step3">
+            <div class="content left">
+                <img src="레이어.png" alt="Step 3 Image">
+                <div class="text">
+                    <h2>Step 3: 레이어 분리</h2>
+                    <p>외부 레이어, 필터 레이어, 내부 레이어를 분리합니다.</p>
+                </div>
+            </div>
+        </div>
+        <div class="step" id="step4">
+            <div class="content right">
+                <div class="text">
+                    <h2>Step 4: 세척 및 분리</h2>
+                    <p>물과 친환경 세제로 세척하여 깨끗하게 한 후, 밀도 차이를 이용해 폴리프로필렌과 폴리에스터를 분리합니다.</p>
+                </div>
+                <img src="step4.jpg" alt="Step 4 Image">
+            </div>
+        </div>
+        <div class="step" id="step5">
+            <div class="content left">
+                <img src="의류제작.png" alt="Step 5 Image">
+                <div class="text">
+                    <h2>Step 5: 의류 제작</h2>
+                    <p>분리된 폴리에스터를 기계로 압출하여 실 형태로 뽑아내어 의류를 제작합니다.</p>
+                </div>
+            </div>
         </div>
     </div>
-
-    <main>
-        <section class="products" id="product-section">
-            <div class="product">
-                <img src="하얀티.jpg" alt="티셔츠" class="product-image">
-                <p class="product-name">티셔츠</p>
-                <p class="product-description">친환경 소재로 만든 티셔츠</p>
-                <p class="price">₩23,000</p>
-            </div>
-            <div class="product">
-                <img src="검정티.jpg" alt="티셔츠" class="product-image">
-                <p class="product-name">티셔츠</p>
-                <p class="product-description">친환경 소재로 만든 티셔츠</p>
-                <p class="price">₩23,000</p>
-            </div>
-            <div class="product">
-                <img src="회색후드티.jpg" alt="맨투맨" class="product-image">
-                <p class="product-name">후드티</p>
-                <p class="product-description">편안한 착용감의 맨투맨</p>
-                <p class="price">₩28,000</p>
-            </div>
-            <div class="product">
-                <img src="검정바지.jpg" alt="바지" class="product-image">
-                <p class="product-name">바지</p>
-                <p class="product-description">스타일리쉬한 친환경 바지</p>
-                <p class="price">₩26,000</p>
-            </div>
-            <div class="product">
-                <img src="회색바지.jpg" alt="바지" class="product-image">
-                <p class="product-name">바지</p>
-                <p class="product-description">스타일리쉬한 친환경 바지</p>
-                <p class="price">₩26,000</p>
-            </div>
-            
-        </section>
-    </main>
-
-    <footer>
-        <p class="small-text">폐마스크 제공 병원: OO 병원, XX 병원, YY 병원</p>
-    </footer>
-
     <script>
-        function openMenu() {
-            document.getElementById("sideMenu").style.width = "300px";
-        }
-
-        function closeMenu() {
-            document.getElementById("sideMenu").style.width = "0";
-        }
-
-        window.addEventListener('scroll', function() {
-            const products = document.getElementById('product-section');
-            const productsPosition = products.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.2;
-
-            if (productsPosition < screenPosition) {
-                products.classList.add('fade-in');
-            }
+        document.addEventListener('scroll', function() {
+            const steps = document.querySelectorAll('.step');
+            const windowHeight = window.innerHeight;
+            
+            steps.forEach(step => {
+                const stepTop = step.getBoundingClientRect().top;
+                
+                if (stepTop < windowHeight - 100) {
+                    step.classList.add('visible');
+                }
+            });
         });
     </script>
 </body>
